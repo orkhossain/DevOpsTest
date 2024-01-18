@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: '1966-03-03T00:06:56.52Z'
+  name: products-default
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              io.kompose.network/products-default: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/products-default: "true"

@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - /var/lib/docker/volumes/mongodb/_data
+  users:
+    container_name: users
+    image: users
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mongo
+    ports:
+      - 3000:3000
+    restart: on-failure:2
+    external_links:
+      - mongo
+    links:
+      - mongo

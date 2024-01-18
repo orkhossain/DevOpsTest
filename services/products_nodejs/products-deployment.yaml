@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: products
+  name: products
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: products
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/products-default: "true"
+        io.kompose.service: products
+    spec:
+      containers:
+        - env:
+            - name: NODE_ENV
+              value: production
+          image: products
+          name: products
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}

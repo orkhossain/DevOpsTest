@@ -1,0 +1,23 @@
+version: "2.0"
+
+services:
+  products:
+    image: products
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8080:4915
+  db:
+    container_name: mysql
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: products
+    volumes:
+      - /var/lib/docker/volumes/mysql/_data
