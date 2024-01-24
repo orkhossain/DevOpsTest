@@ -1,13 +1,14 @@
 version: "3"
 
 services:
-  api_gateway:
+  ngnix:
+    image: reverse-proxy
+    container_name: ngnix
+    # restart: always
     build: .
     ports:
       - "443:443"
-    networks:
-      - nginx_network
 
 networks:
-  nginx_network:
-    driver: bridge
+  default:
+    name: proxy-net
