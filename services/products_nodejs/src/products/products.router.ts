@@ -14,9 +14,8 @@ router.get("/", async (request: Request, response: Response) => {
   }
 });
 
-router.get(`/create`, async (request: Request, response: Response) => {
+router.post(`/create`, async (request: Request, response: Response) => {
   const { title, price, description } = request.body;
-  console.log(request.body);
   try {
     const product = await ProductService.createProduct({
       title,

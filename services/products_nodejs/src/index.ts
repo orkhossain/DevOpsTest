@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
@@ -13,8 +12,8 @@ dotenv.config();
 
 app.use("/api/products", router);
 
-const server = app.listen(8080, () =>
+const server = app.listen(5000, () =>
   console.log(`
-🚀 Server ready at: http://localhost:8080
+🚀 Server ready at: http://localhost:5000
 ⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api`)
 );

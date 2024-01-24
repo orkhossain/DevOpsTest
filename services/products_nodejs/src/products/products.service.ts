@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-// use `prisma` in your application to read and write data in your prisma
 type ProductRead = {
   id: number;
   title: string;
@@ -31,6 +30,7 @@ export const createProduct = async (
   Product: ProductWrite
 ): Promise<ProductRead> => {
   const { title, description, price } = Product;
+  console.log( title, description, price)
 
   return prisma.product.create({
     data: {
@@ -63,3 +63,4 @@ export const deleteProduct = async (id: number): Promise<void> => {
     },
   });
 };
+

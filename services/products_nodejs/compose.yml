@@ -1,23 +1,35 @@
-version: "2.0"
+version: "3.4"
 
 services:
   products:
+    container_name: products
     image: products
     build:
       context: .
       dockerfile: ./Dockerfile
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
     ports:
-      - 8080:4915
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - proxy-net
+
   db:
     container_name: mysql
     image: mysql:latest
     restart: always
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: products
     volumes:
       - /var/lib/docker/volumes/mysql/_data
+    networks:
+      - proxy-net
+
+networks:
+  proxy-net:
+    external: true
