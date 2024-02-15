@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  payment_api:
+    build: .
+    ports:
+      - "80:80"
+    networks:
+      - proxy-net
+    depends_on:
+      - cassandra
+    environment:
+      - CASSANDRA_HOST=cassandra
+
+  cassandra:
+    image: cassandra:latest
+    networks:
+      - proxy-net
+
+networks:
+  proxy-net:
+    external: true
