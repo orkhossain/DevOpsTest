@@ -8,12 +8,23 @@ services:
     networks:
       - proxy-net
     depends_on:
-      - cassandra
+      - mariadb
     environment:
-      - CASSANDRA_HOST=cassandra
+      - MARIADB_HOST=mariadb
+      - MARIADB_PORT=3306
+      - MARIADB_USER=myuser
+      - MARIADB_PASSWORD=mypassword
+      - MARIADB_DATABASE=payments
 
-  cassandra:
-    image: cassandra:latest
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=rootpassword
+      - MARIADB_USER=myuser
+      - MARIADB_PASSWORD=mypassword
+      - MARIADB_DATABASE=payments
     networks:
       - proxy-net
 

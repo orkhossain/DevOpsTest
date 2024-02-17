@@ -19,11 +19,14 @@ RUN go build -o main .
 # Start a new stage from scratch
 FROM alpine:latest
 
+# Set the Current Working Directory inside the container
+WORKDIR /app
+
 # Copy the Pre-built binary file from the previous stage
-COPY --from=build /app/main /app/main
+COPY --from=build /app/main .
 
 # Expose port 8080 to the outside world
-EXPOSE 8080
+EXPOSE 80
 
 # Command to run the executable
-CMD ["/app/main"]
+CMD ["./main"]
