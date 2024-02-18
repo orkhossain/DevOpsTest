@@ -73,8 +73,8 @@ func main() {
 	port := ":80"
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
-	r.Get("/payments", handlePayments)
-	r.Post("/payments/create", createPayment)
+	r.Get("/api/payment", handlePayments)
+	r.Post("/api/payment/create", createPayment)
 	log.Printf("Server started on port %s\n", port)
 	log.Fatal(http.ListenAndServe(port, r))
 }
@@ -92,6 +92,7 @@ func handlePayments(w http.ResponseWriter, r *http.Request) {
 
 func createPayment(w http.ResponseWriter, r *http.Request) {
 	var payment Payment
+	fmt.Print(payment)
 	if err := json.NewDecoder(r.Body).Decode(&payment); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

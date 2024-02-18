@@ -1,25 +1,27 @@
 version: "3"
 
 services:
-  payment_api:
+  payment:
     build: .
+    container_name: "payment"
     ports:
       - "80:80"
-    networks:
-      - proxy-net
-    depends_on:
-      - mariadb
     environment:
       - MARIADB_HOST=mariadb
       - MARIADB_PORT=3306
       - MARIADB_USER=myuser
       - MARIADB_PASSWORD=mypassword
       - MARIADB_DATABASE=payments
+    networks:
+      - proxy-net
+    depends_on:
+      - mariadb
 
   mariadb:
+    container_name: "mariadb"
     image: mariadb:latest
     ports:
-      - "3306:3306"
+      - "52000:3306"
     environment:
       - MARIADB_ROOT_PASSWORD=rootpassword
       - MARIADB_USER=myuser
