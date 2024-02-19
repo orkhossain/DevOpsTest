@@ -7,9 +7,10 @@ import rateLimit from 'express-rate-limit';
 import { PORT, NODE_ENV } from '@config/config';
 import apolloServer from '@server/initGraphQLServer';
 import { httpsRedirect, wwwRedirect } from '@lib/http-redirect';
-
+const router = require( '../rabbitmq/send')
 const app = express();
-
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 const IS_DEV = NODE_ENV === 'development';
 
 app.use(cors());
@@ -23,6 +24,9 @@ app.use(
     extended: true,
   })
 );
+
+app.use('/message', router);
+
 
 // redirects should be ideally setup in reverse proxy like nignx
 if (NODE_ENV === 'production') {

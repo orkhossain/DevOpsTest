@@ -15,7 +15,6 @@ const ProductMutations = {
     },
     resolve: async (_source, { input }) => {
       const createdProduct = await createProduct(input);
-      console.log(createdProduct)
       return {product: createdProduct}
     
   },

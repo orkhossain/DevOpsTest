@@ -4,7 +4,7 @@ import {
   GraphQLObjectType,
   GraphQLNonNull,
 } from 'graphql';
-import UserRoleEnum from '@users/UserRoleEnumType';
+import UserRoleEnum from '@server/gateway/users/types/UserRoleEnumType';
 import DateTime from '@gateway/custom-scalars/DateTime';
 
 

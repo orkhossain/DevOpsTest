@@ -5,9 +5,9 @@ import {
 } from 'graphql';
 import isEmail from 'validator/lib/isEmail';
 import { createUser, createUsers } from '@users/users-operations';
-import CreateUserInput from '@users/CreateUserInputType';
-import CreateUserPayload from '@users/CreateUserPayload';
-import CreateUsersPayload from '@users/CreateUsersPayload';
+import CreateUserInput from '@server/gateway/users/types/CreateUserInputType';
+import CreateUserPayload from '@server/gateway/users/types/CreateUserPayload';
+import CreateUsersPayload from '@server/gateway/users/types/CreateUsersPayload';
 
 const UserMutations = {
   createUser: {

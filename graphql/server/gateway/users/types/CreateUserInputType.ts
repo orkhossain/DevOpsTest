@@ -3,7 +3,7 @@ import {
   GraphQLInputObjectType,
   GraphQLNonNull,
 } from 'graphql';
-import UserRole from '@users/UserRoleEnumType';
+import UserRole from '@server/gateway/users/types/UserRoleEnumType';
 
 const CreateUserInputType = new GraphQLInputObjectType({
   name: 'CreateUserInput',

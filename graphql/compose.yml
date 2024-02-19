@@ -10,3 +10,9 @@ services:
       NODE_ENV: production
     ports:
       - 8000:8000
+    networks:
+      - proxy-net
+
+networks:
+  proxy-net:
+    external: true
