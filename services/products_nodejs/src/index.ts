@@ -2,9 +2,10 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import { router } from "./products/products.router";
+const subscriber = require('../rabbitmq/receive')
 
 const app = express();
-
+subscriber()
 app.use(cors());
 app.use(express.json());
 
