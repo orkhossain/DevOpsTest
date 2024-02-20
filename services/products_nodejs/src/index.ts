@@ -2,10 +2,19 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import { router } from "./products/products.router";
-const subscriber = require('../rabbitmq/receive')
+import Consumer from '../kafka/consumer'
+
+const consumer = new Consumer('a')
+
+async function consume() {
+  await consumer.startConsumer();
+  await consumer.shutdown();
+
+}
+
+consume()
 
 const app = express();
-subscriber()
 app.use(cors());
 app.use(express.json());
 
