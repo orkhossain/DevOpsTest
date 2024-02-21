@@ -29,7 +29,7 @@ export default class ProducerFactory {
     })
 
     const topicMessages: TopicMessages = {
-      topic: 'producer-topic',
+      topic: 'test',
       messages: kafkaMessages
     }
 
@@ -42,8 +42,8 @@ export default class ProducerFactory {
 
   private createProducer() : Producer {
     const kafka = new Kafka({
-      clientId: 'producer-client',
-      brokers: ['localhost:9092'],
+      clientId: 'client-id',
+      brokers: ['kafka:9092'],
     })
 
     return kafka.producer()

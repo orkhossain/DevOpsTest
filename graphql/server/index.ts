@@ -7,17 +7,24 @@ import rateLimit from 'express-rate-limit';
 import { PORT, NODE_ENV } from '@config/config';
 import apolloServer from '@server/initGraphQLServer';
 import { httpsRedirect, wwwRedirect } from '@lib/http-redirect';
-import Kafka from '../kakfa/producer'
+import ProducerFactory from '../kakfa/producer';
 
 const router = require( '../rabbitmq/send')
-const bodyParser = require('body-parser');
-
 const app = express();
-const kafka = new Kafka()
-
-
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 const IS_DEV = NODE_ENV === 'development';
+const producerFactory = new ProducerFactory();
+
+async function producer() {
+await producerFactory.start();
+const messages = [{ a: 'message1' }, { a: 'message2' }];
+await producerFactory.sendBatch(messages);
+await producerFactory.shutdown();
+}
+
+
+producer()
 
 app.use(cors());
 app.enable('trust proxy');
@@ -47,10 +54,6 @@ if (NODE_ENV === 'production') {
 }
 
 async function startServer() {
-  await kafka.start();
-  const messages = [{ a: 'message1' }, { a: 'message2' }];
-  await kafka.sendBatch(messages);
-  await kafka.shutdown();
   await apolloServer.start();
   apolloServer.applyMiddleware({ app, path: "/graphql" });
 }
