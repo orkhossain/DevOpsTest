@@ -11,8 +11,8 @@ export default class ExampleConsumer {
 
   public async startConsumer(): Promise<void> {
     const topic: ConsumerSubscribeTopics = {
-      topics: ['example-topic'],
-      fromBeginning: false
+      topics: ['test'],
+      fromBeginning: true
     }
 
     try {
@@ -33,7 +33,7 @@ export default class ExampleConsumer {
 
   public async startBatchConsumer(): Promise<void> {
     const topic: ConsumerSubscribeTopics = {
-      topics: ['example-topic'],
+      topics: ['test'],
       fromBeginning: false
     }
 
@@ -61,7 +61,7 @@ export default class ExampleConsumer {
   private createKafkaConsumer(): Consumer {
     const kafka = new Kafka({ 
       clientId: 'client-id',
-      brokers: ['example.kafka.broker:9092']
+      brokers: ['kafka:9092']
     })
     const consumer = kafka.consumer({ groupId: 'consumer-group' })
     return consumer

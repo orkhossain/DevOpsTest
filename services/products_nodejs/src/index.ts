@@ -3,14 +3,15 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import { router } from "./products/products.router";
 import Consumer from '../kafka/consumer'
-
-const consumer = new Consumer('a')
+const createRabbitMQConsumer = require('../rabbitmq/receive')
 
 async function consume() {
-  await consumer.startConsumer();
-  await consumer.shutdown();
-
+  const consumer = new Consumer('a')
+  await consumer.startBatchConsumer();
+  // await consumer.shutdown();
 }
+
+createRabbitMQConsumer()
 
 consume()
 
@@ -22,7 +23,7 @@ dotenv.config();
 
 app.use("/api/products", router);
 
-const server = app.listen(5000, () =>
+app.listen(5000, () =>
   console.log(`
 🚀 Server ready at: http://localhost:5000
 ⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api`)
