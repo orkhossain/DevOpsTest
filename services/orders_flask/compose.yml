@@ -2,6 +2,7 @@ version: "3"
 
 services:
   flask-app:
+    container_name: flask-app
     build:
       context: .
       dockerfile: Dockerfile

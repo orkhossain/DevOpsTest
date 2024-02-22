@@ -13,6 +13,8 @@ services:
       - DATABASE_PASSWORD=secret
     depends_on:
       - postgres
+    networks:
+      - proxy-net
 
   postgres:
     image: "postgres:latest"
@@ -26,6 +28,11 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - proxy-net
 
+networks:
+  proxy-net:
+    external: true
 volumes:
   pgdata: {}

@@ -9,7 +9,7 @@ db = SQLAlchemy(app)
 
 class Order(db.Model):
     __tablename__ = 'Order'
-    __table_args__ = {'schema': 'order'} 
+    __table_args__ = {'schema': 'public'} 
 
     id = db.Column(db.Text, primary_key=True)
     description = db.Column(db.Text)
