@@ -12,6 +12,8 @@ services:
       - "15672:15672"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - proxy-net
 
 networks:
   proxy-net:

@@ -16,6 +16,15 @@ services:
       - postgres
     networks:
       - proxy-net
+    develop:
+      watch:
+        - action: sync
+          path: ./
+          target: /app.py
+          ignore:
+            - __pycache__/
+        - action: rebuild
+          path: requirements.txt
 
   postgres:
     container_name: postgres
