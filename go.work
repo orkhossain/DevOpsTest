@@ -1,0 +1,10 @@
+go 1.21.3
+
+use (
+	./services/payment_golang
+	./services/payment_golang/app
+	./services/payment_golang/app/config
+	./services/payment_golang/app/database
+	./services/payment_golang/app/models
+	./services/payment_golang/app/routes
+)
