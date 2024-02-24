@@ -22,13 +22,13 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: ork25/nginx:latest  # Replace 'yourdockerusername' with your Docker Hub username
+        image: ork25/nginx:latest 
         ports:
         - containerPort: 443
         resources:
           limits:
-            cpu: "0.5" # Maximum of 0.5 CPU cores
-            memory: "512Mi" # Maximum of 512MB memory
+            cpu: "0.5"
+            memory: "512Mi" 
 
 ---
 
@@ -64,13 +64,13 @@ spec:
     spec:
       containers:
       - name: redis
-        image: ork25/redis:latest  # Replace 'yourdockerusername' with your Docker Hub username
+        image: ork25/redis:latest 
         ports:
         - containerPort: 6379
         resources:
           limits:
-            cpu: "0.5" # Maximum of 0.5 CPU cores
-            memory: "512Mi" # Maximum of 512MB memory
+            cpu: "0.5"
+            memory: "512Mi" 
 
 ---
 
@@ -106,7 +106,7 @@ spec:
     spec:
       containers:
       - name: orders
-        image: ork25/orders:latest  # Replace 'yourdockerusername' with your Docker Hub username
+        image: ork25/orders:latest 
         ports:
         - containerPort: 5000
         env:
@@ -118,8 +118,8 @@ spec:
           value: user
         resources:
           limits:
-            cpu: "1" # Maximum of 1 CPU core
-            memory: "1Gi" # Maximum of 1GB memory
+            cpu: "1" 
+            memory: "1Gi"
 
 ---
 
@@ -155,7 +155,7 @@ spec:
     spec:
       containers:
       - name: cart
-        image: ork25/cart:latest  # Replace 'yourdockerusername' with your Docker Hub username
+        image: ork25/cart:latest  
         ports:
         - containerPort: 8080
         env:
@@ -167,8 +167,8 @@ spec:
           value: user
         resources:
           limits:
-            cpu: "1" # Maximum of 1 CPU core
-            memory: "1Gi" # Maximum of 1GB memory
+            cpu: "1"
+            memory: "1Gi" 
 
 ---
 
