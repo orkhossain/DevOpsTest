@@ -1,0 +1,39 @@
+apiVersion: skaffold/v4beta9
+kind: Config
+metadata:
+  name: devops-project
+build:
+  artifacts:
+    - image: mysql
+      context: graphql
+      docker:
+        dockerfile: Dockerfile
+    - image: ork25/cart
+      context: services/Cart_java
+      docker:
+        dockerfile: Dockerfile
+    - image: ork25/nginx
+      context: services/api-gateway_ngnix
+      docker:
+        dockerfile: Dockerfile
+    - image: ork25/orders
+      context: services/orders_flask
+      docker:
+        dockerfile: Dockerfile
+    - image: ork25/redis
+      context: services/payment_golang
+      docker:
+        dockerfile: Dockerfile
+    - image: products
+      context: services/products_nodejs
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - deployment.yaml
+    - services/products_nodejs/db-claim0-persistentvolumeclaim.yaml
+    - services/products_nodejs/db-deployment.yaml
+    - services/products_nodejs/db-service.yaml
+    - services/products_nodejs/products-default-networkpolicy.yaml
+    - services/products_nodejs/products-deployment.yaml
+    - services/products_nodejs/products-service.yaml
