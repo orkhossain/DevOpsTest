@@ -6,7 +6,6 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    image: products
     environment:
       NODE_ENV: development
     ports:

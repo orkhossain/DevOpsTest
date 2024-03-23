@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  users_dotnet:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: users_dotnet
+    ports:
+      - "8080:80"
+    depends_on:
+      - mongodb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDBSettings__ConnectionString=mongodb://mongodb:27017
+      - MongoDBSettings__DatabaseName=YourDatabaseName
+
+volumes:
+  mongodb_data:

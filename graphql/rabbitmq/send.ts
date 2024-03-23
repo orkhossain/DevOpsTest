@@ -10,7 +10,7 @@ const host = 'rabbitmq';
 const port = 5672;
 const vhost = '/';
 const connectionString = `amqp://${username}:${password}@${host}:${port}/${vhost}`;
-
+console.log(connectionString)
 router.post('/', express.json(), function (req, res, next) {
     const message = req.body.message;
     if (!message) {
